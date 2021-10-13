@@ -25,53 +25,90 @@
         
     }
    .grid-img{
-                width: 100px;
-                height: 100px;
+                width: 100%;
+                height: 100%;
                 object-fit: cover;
             }
         </style>
+
+        <script>
+         
+         tries = 0;
+         distanceVal = 0;
+         function check(position){
+             var animalLocation = 13;
+             var ids = [];
+             for(var i=0; i<24;i++){
+                ids[i] = ""+i;
+             }
+             if(position == animalLocation){
+                 document.getElementById(ids[position]).setAttribute('src','panther.jpg');
+             }else{
+                 document.getElementById(ids[position]).setAttribute('src','hole.jpg');
+                 tries = tries + 1;
+                 document.getElementById("tries").innerHTML = "Number of tries is " + tries;
+            }
+            
+            
+           distanceVal =  distance(position,animalLocation);
+            document.getElementById("distance").innerHTML = "Distance is " + distanceVal;
+         }
+         
+         function distance(pos1, pos2){
+         var pos1RowNo = Math.ceil((pos1 + 1) / 6);
+         var pos2RowNo = Math.ceil((pos2 + 1) / 6);
+         var pos1ColNo = (pos1 % 6) + 1;
+         var pos2ColNo = (pos2 % 6) + 1;
+         var verticalCount = Math.abs(pos1RowNo - pos2RowNo);
+         var horizontalCount = Math.abs(pos1ColNo - pos2ColNo);
+
+         return horizontalCount > verticalCount ? horizontalCount : verticalCount;
+
+        
+    }
+        </script>
 </head>
 
-    <h1 style=" color:brown;" class="text-center">Animal Hunt by Srikanth Reddy Bhumpalli</h1><br>
+    <h1 style=" color:brown;" class="text   -center">Animal Hunt by Srikanth Reddy Bhumpalli</h1><br>
     <div style=" font-size: 20px; color:darkgreen;"class=mb-2>Click on the squares to search for wild life</div>
     <div class=mb-2 id="tries">Number of tries is zero.</div><br>
     <div class=mb-2 id="distance" >Distance is unknown</div><br>
-    <div class="container max-width: 500px;">
+    <div class="container" style="width: 50%">
         
         <div class="image-row d-flex">
-            <div class="col-sm-2"><img src="bush.jpg" alt="bush" class="mw-80 grid-img"></div>
-            <div class="col-sm-2"><img src="bush.jpg" alt="bush" class="mw-80 grid-img"></div>
-            <div class="col-sm-2"><img src="bush.jpg" alt="bush" class="mw-80 grid-img"></div>
-            <div class="col-sm-2"><img src="bush.jpg" alt="bush" class="mw-80 grid-img"></div>
-            <div class="col-sm-2"><img src="bush.jpg" alt="bush" class="mw-80 grid-img"></div>
-            <div class="col-sm-2"><img src="bush.jpg" alt="bush" class="mw-80 grid-img"></div>
+            <div class="col-sm-2"><img id="0" src="bush.jpg" alt="bush" class="grid-img" onclick="check(0)"></div>
+            <div class="col-sm-2"><img id="1" src="bush.jpg" alt="bush" class="grid-img" onclick="check(1)"></div>
+            <div class="col-sm-2"><img id="2" src="bush.jpg" alt="bush" class="grid-img" onclick="check(2)"></div>
+            <div class="col-sm-2"><img id="3" src="bush.jpg" alt="bush" class="grid-img" onclick="check(3)"></div>
+            <div class="col-sm-2"><img id="4" src="bush.jpg" alt="bush" class="grid-img" onclick="check(4)"></div>
+            <div class="col-sm-2"><img id="5" src="bush.jpg" alt="bush" class="grid-img" onclick="check(5)"></div>
         </div>
-        <br>
+    
         <div class="image-row d-flex">
-            <div class="col-sm-2"><img src="bush.jpg" alt="bush" class="mw-80 grid-img"></div>
-            <div class="col-sm-2"><img src="bush.jpg" alt="bush" class="mw-80 grid-img"></div>
-            <div class="col-sm-2"><img src="bush.jpg" alt="bush" class="mw-80 grid-img"></div>
-            <div class="col-sm-2"><img src="bush.jpg" alt="bush" class="mw-80 grid-img"></div>
-            <div class="col-sm-2"><img src="bush.jpg" alt="bush" class="mw-80 grid-img"></div>
-            <div class="col-sm-2"><img src="bush.jpg" alt="bush" class="mw-80 grid-img"></div>
+            <div class="col-sm-2"><img id="6" src="bush.jpg" alt="bush" class="grid-img" onclick="check(6)"></div>
+            <div class="col-sm-2"><img id="7" src="bush.jpg" alt="bush" class="grid-img" onclick="check(7)"></div>
+            <div class="col-sm-2"><img id="8" src="bush.jpg" alt="bush" class="grid-img" onclick="check(8)"></div>
+            <div class="col-sm-2"><img id="9" src="bush.jpg" alt="bush" class="grid-img" onclick="check(9)"></div>
+            <div class="col-sm-2"><img id="10" src="bush.jpg" alt="bush" class="grid-img" onclick="check(10)"></div>
+            <div class="col-sm-2"><img id="11" src="bush.jpg" alt="bush" class="grid-img" onclick="check(11)"></div>
         </div>
-        <br>
+       
         <div class="image-row d-flex">
-            <div class="col-sm-2"><img src="bush.jpg" alt="bush" class="mw-80 grid-img"></div>
-            <div class="col-sm-2"><img src="bush.jpg" alt="bush" class="mw-80 grid-img"></div>
-            <div class="col-sm-2"><img src="bush.jpg" alt="bush" class="mw-80 grid-img"></div>
-            <div class="col-sm-2"><img src="bush.jpg" alt="bush" class="mw-80 grid-img"></div>
-            <div class="col-sm-2"><img src="bush.jpg" alt="bush" class="mw-80 grid-img"></div>
-            <div class="col-sm-2"><img src="bush.jpg" alt="bush" class="mw-80 grid-img"></div>
+            <div class="col-sm-2"><img id="12" src="bush.jpg" alt="bush" class="grid-img" onclick="check(12)"></div>
+            <div class="col-sm-2"><img id="13" src="bush.jpg" alt="bush" class="grid-img" onclick="check(13)"></div>
+            <div class="col-sm-2"><img id="14" src="bush.jpg" alt="bush" class="grid-img" onclick="check(14)"></div>
+            <div class="col-sm-2"><img id="15" src="bush.jpg" alt="bush" class="grid-img" onclick="check(15)"></div>
+            <div class="col-sm-2"><img id="16" src="bush.jpg" alt="bush" class="grid-img" onclick="check(16)"></div>
+            <div class="col-sm-2"><img id="17" src="bush.jpg" alt="bush" class="grid-img" onclick="check(17)"></div>
         </div>
-        <br>
+       
         <div class="image-row d-flex">
-            <div class="col-sm-2"><img src="bush.jpg" alt="bush" class="mw-80 grid-img"></div>
-            <div class="col-sm-2"><img src="bush.jpg" alt="bush" class="mw-80 grid-img"></div>
-            <div class="col-sm-2"><img src="bush.jpg" alt="bush" class="mw-80 grid-img"></div>
-            <div class="col-sm-2"><img src="bush.jpg" alt="bush" class="mw-80 grid-img"></div>
-            <div class="col-sm-2"><img src="bush.jpg" alt="bush" class="mw-80 grid-img"></div>
-            <div class="col-sm-2"><img src="bush.jpg" alt="bush" class="mw-80 grid-img"></div>
+            <div class="col-sm-2"><img id="18" src="bush.jpg" alt="bush" class="grid-img" onclick="check(18)"></div>
+            <div class="col-sm-2"><img id="19" src="bush.jpg" alt="bush" class="grid-img" onclick="check(19)"></div>
+            <div class="col-sm-2"><img id="20" src="bush.jpg" alt="bush" class="grid-img" onclick="check(20)"></div>
+            <div class="col-sm-2"><img id="21" src="bush.jpg" alt="bush" class="grid-img" onclick="check(21)"></div>
+            <div class="col-sm-2"><img id="22" src="bush.jpg" alt="bush" class="grid-img" onclick="check(22)"></div>
+            <div class="col-sm-2"><img id="23" src="bush.jpg" alt="bush" class="grid-img" onclick="check(23)"></div>
            
         </div>
     </div>
