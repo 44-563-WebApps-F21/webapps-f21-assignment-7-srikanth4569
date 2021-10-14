@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html> <head> 
+
+	<title>stack</title>
+	<style>
+    .flex-container {
+      display: flex;  flex-direction:row;
+      background-color: red;
+  }
+
+.flex-container > div {  /*div children of the flex container*/
+  background-color: #f1f1f1; 
+  margin: 10px;  padding: 20px;  font-size: 30px;
+}
+
+/* Responsive layout */
+@media (max-width: 600px) { 
+	 .flex-container{
+		 flex-direction:column;
+		 background-color: green;
+	  }
+	}
+</style></head>
+
+
+
+<body>
+	<h1>Srikanth Reddy Bhumpalli builds by stack</h1>
+		<div class="flex-container" id="target">
+		 
+		</div>
+	
+	<p> Press the button to create an new element of type div and then add it to the container.
+		</p>
+		<form>
+			<input type="text" id="sampleText" name="sampleText" width=40/>
+			<button onclick="makeNewDiv()" type="button">Push Value</button>
+			<button onclick="popItem()" type="button">Pop</button>
+			<button onclick="zap()" type="button">Zap</button>
+			<button onclick="keepUnique()" type="button">Unique</button>
+		</form>
+		
+	
+	
+</body>
+<script>
+	function makeNewDiv(){
+		/* make the div and its text */
+		var text = document.getElementById("sampleText").value;
+		if(text.length > 0){
+		let element = document.createElement("div")
+		
+		element.innerHTML = text;
+		element.classList = ["stack"];
+
+		/* add it to the container */
+		document.getElementById('target').appendChild(element);
+		}
+		
+	}
+
+	function popItem(){
+        var stackItems = document.getElementsByClassName("stack");
+		if(stackItems.length > 0){
+			
+			stackItems[stackItems.length-1].remove();
+
+		}
+	}
+
+	function zap(){
+        var stackItems = document.getElementsByClassName("stack");
+		var text = document.getElementById("sampleText").value;
+		for(var i=0; i<stackItems.length; i++)
+		{
+			if(text == stackItems[i].innerHTML){
+			    console.log(stackItems[i]);
+				stackItems[i].remove();
+			}
+		}
+	}
+
+	function keepUnique(){
+		var stackItems = document.getElementsByClassName("stack");
+		var elementsToRemove = [];
+		var counter = 0;
+		var trackRemoveIndexes = [];
+		for(var i = stackItems.length; i > 0; i--){
+            var currentElementHTML = stackItems[i-1].innerHTML;
+			for(var j=0; j < i-1; j++){
+				var iteratingElementHTML = stackItems[j].innerHTML;
+				if(iteratingElementHTML == currentElementHTML && !trackRemoveIndexes.includes(j)){
+					elementsToRemove[counter] = stackItems[j];
+					trackRemoveIndexes[counter] = j;
+					counter = counter + 1;	
+				}
+			}
+		}
+
+		for (var k=0; k < elementsToRemove.length; k++){
+			elementsToRemove[k].remove();
+		}
+	}
+</script>
+</html>	

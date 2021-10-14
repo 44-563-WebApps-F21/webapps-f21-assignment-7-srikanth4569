@@ -33,16 +33,42 @@
 
         <script>
          
-         tries = 0;
+         
          distanceVal = 0;
+         function resetTries(){
+         tries = 0;
+        
+         if(window.animalLocation != undefined){
+            var oldAnimalLocation = animalLocation;
+            for(let i=0; i<24;i++){
+            setTimeout(function(){
+         
+            if( i != oldAnimalLocation) 
+            document.getElementById(""+i).setAttribute('src','bush.jpg');
+        
+           },i*50);
+       }
+          setTimeout(
+              function(){
+                  document.getElementById(""+oldAnimalLocation).setAttribute('src','bush.jpg');
+                  document.getElementById("tries").innerHTML = "Number of tries is " + tries;
+                },2500);
+        }
+          
+          animalLocation = Math.floor(Math.random() * 24);
+          console.log(animalLocation);
+        }
+         resetTries();
          function check(position){
-             var animalLocation = 13;
              var ids = [];
              for(var i=0; i<24;i++){
                 ids[i] = ""+i;
              }
+             distanceVal =  distance(position,animalLocation);
+             document.getElementById("distance").innerHTML = "Distance is " + distanceVal;
              if(position == animalLocation){
                  document.getElementById(ids[position]).setAttribute('src','panther.jpg');
+                 resetTries();
              }else{
                  document.getElementById(ids[position]).setAttribute('src','hole.jpg');
                  tries = tries + 1;
@@ -50,8 +76,7 @@
             }
             
             
-           distanceVal =  distance(position,animalLocation);
-            document.getElementById("distance").innerHTML = "Distance is " + distanceVal;
+           
          }
          
          function distance(pos1, pos2){
@@ -66,6 +91,8 @@
 
         
     }
+
+   
         </script>
 </head>
 
